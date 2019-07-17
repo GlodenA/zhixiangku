@@ -1,4 +1,4 @@
-/**app.wxss**/
+/**app.wxss
 .container {
   height: 100%;
   display: flex;
@@ -8,3 +8,11 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+**/
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  margin-top: 20%;
+  justify-content: space-between;
+}

@@ -1,0 +1,10 @@
+<!--docs.wxml-->
+<view class="title">前沿技术</view>
+
+<view class="box">
+<view class="docsname">5G</view>
+<button type="primary" size='mini' bindtap="viewdoc">查看</button>
+</view>
+<view class="box">
+<view class="docsname">人工智能</view>
+</view>

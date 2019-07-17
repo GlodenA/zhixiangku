@@ -1,0 +1,8 @@
+<!--docs.wxml-->
+<view class="title">关于我们</view>
+<view class="box">
+<view class="docsname">联系电话：18625167105</view>
+</view>
+<view class="box">
+<view class="docsname">地址：经开大厦</view>
+</view>

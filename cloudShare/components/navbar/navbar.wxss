@@ -1,0 +1,58 @@
+/* components/navbar/navbar.wxss */
+.nav-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 750rpx;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    height: 44px;
+}
+
+.selfcentre {
+    position: absolute;
+    left: 34px;
+    top: 0;
+    /* width: 88px; */
+    width: 15%;
+    line-height: 44px;
+    font-weight: 100;
+    font-size :12px;
+    color: rgb(16, 167, 255);
+}
+.title {
+    color: black;
+    text-align: center;
+    line-height: 44px;
+    font-weight: 500;
+}
+.bgimg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.selfpic{
+  left: 10px;
+  top: 10px;
+  bottom: 10px;
+  width: 24px; 
+  border-radius: 50%;
+  overflow: hidden;
+  height:  24px;
+  position: absolute;
+  background: yellow;
+
+}
+
+
+.userInfo {
+  border-radius: 50%;
+  width:  24px;
+  height:  24px;
+}

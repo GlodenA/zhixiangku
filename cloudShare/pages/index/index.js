@@ -7,7 +7,15 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    background: ['green', 'red', 'yellow'],
+    bgpic: ['/images/bainiu.png','/images/5G.png', '/images/wlw.png'],
+    indicatorDots: true,
+    circular: true,
+    vertical: false,
+    autoplay: true,
+    interval: 3000,
+    duration: 1000
   },
   //事件处理函数
   bindViewTap: function() {
@@ -49,6 +57,14 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  bindGetUserInfo(e) {
+    console.log(e.detail.userInfo)
+  },
+  bindsearch:function(){
+    wx.navigateTo({
+      url: '/pages/serch/serch'
     })
   }
 })

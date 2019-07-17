@@ -1,0 +1,11 @@
+<!--pages/serch/serch.wxml-->
+<navbar  bgColor="white" title="搜索" back="true" hastop>
+</navbar>
+<view class="container">
+<view class="serch-serch">
+<view  class="capsule"> 
+<input type="text"  class="searchinput" placeholder="搜 索"/>
+</view>
+<view bindtap='bindcancel' class="searchcancel">取消</view>
+</view>
+</view>

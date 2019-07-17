@@ -1,0 +1,5 @@
+<!--pages/selfcentre/selfcentre.wxml-->
+<navbar  bgColor="white" title="个人中心" back="true" hastop bgsrc="/images/bg.jpeg">
+</navbar>
+<view class="container">
+</view>

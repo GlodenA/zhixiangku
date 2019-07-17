@@ -1,13 +1,35 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/docs/docs",
+    "pages/about/about",
+    "pages/selfcentre/selfcentre",
+    "pages/serch/serch"
   ],
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar"
+  },
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "智享库",
+    "navigationStyle": "custom",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/docs/docs",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/about/about",
+        "text": "关于"
+      }
+    ]
+  }
 }

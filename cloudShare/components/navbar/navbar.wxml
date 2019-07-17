@@ -1,0 +1,20 @@
+<view class='nav-wrap' style="background-color:{{bgColor}};">
+<!-- <image class='bgimg' wx:if="{{bgsrc}}" src='{{bgsrc}}' mode='aspectFill'></image> -->
+    <view style="height:{{statusBarHeight}}px;"></view>
+    <view class='content'>
+      <view class="title">{{title}}</view>
+      <view  wx:if="{{ back || home }}" >
+        <view bindtap='back' wx:if="{{back}}">
+           <!-- <image src='img/back.svg'></image>             -->
+        </view>
+        <view bindtap='selfcentre' wx:if="{{home}}" >
+          <view class='selfpic'>
+              <open-data class='userInfo' type="userAvatarUrl"></open-data>
+          </view>
+          <view  class='selfcentre' >个人中心</view>
+        </view>
+      </view>
+    </view>
+</view>
+
+<view wx:if="{{hastop}}" class='padding' style="width:100;height:{{navBarHeight}}px;"></view>

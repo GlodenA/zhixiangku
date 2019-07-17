@@ -1,0 +1,19 @@
+.title
+{
+  text-align:center;
+  color: royalblue;
+}
+.box{
+  width:90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  height: 300rpx;
+  background-color: lightgrey
+}
+.box_margin{
+  width:100%;
+  height: 50rpx;
+  background-color: white
+}
