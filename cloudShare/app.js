@@ -5,13 +5,37 @@ App({
     // var logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
-    // // 登录
-    // wx.login({
-    //   success: res => {
-    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //   }
-    // })
-    
+    //登录
+    wx.checkSession({
+      success() {
+        //session_key 未过期，并且在本生命周期一直有效
+        console.log("session_key 未过期");
+      },
+      fail() {
+        // session_key 已经失效，需要重新执行登录流程
+        wx.login({
+          success: res => {
+            console.log("code:" + res.code);
+            let sessionId ="123";
+            // 发送sessionId  res.code 到后台换取 openId, sessionKey, unionId，并存在服务端
+             wx.request({
+               url: 'http://192.168.1.16:9001/docs/login',
+               data: {
+                "code": res.code,
+                "cookie":sessionId
+               }
+             })
+            //把sessionId存储在本地
+            wx.setStorageSync({
+              key: 'cookie',
+              data: sessionId,
+            })
+          }
+        })
+      }
+    })
+
+
     wx.getSystemInfo({
       success: (res) => {
         this.globalData.statusBarHeight = res.statusBarHeight

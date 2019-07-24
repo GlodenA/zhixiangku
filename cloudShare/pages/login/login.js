@@ -2,7 +2,6 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -22,9 +21,8 @@ Page({
   //   })
   // },
   onLoad: function () {
-    
-
     var that = this;
+
    // 查看是否授权
     wx.getSetting({
       success: function (res) {
@@ -45,10 +43,11 @@ Page({
           hasUserInfo: true
         })
         console.log("2")
-        wx.switchTab({
-          url: "/pages/index/index"
-        })
+
       }
+      wx.switchTab({
+        url: "/pages/index/index"
+      })
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
@@ -103,9 +102,17 @@ Page({
       console.log("用户的信息如下：");
       console.log(e.detail.userInfo);
       app.globalData.userInfo = e.detail.userInfo;
-            //用户按了允许授权按钮
+       //用户按了允许授权按钮
       //var that = this;
       //插入登录的用户的相关信息到数据库
+      //let cookie = wx.getStorageSync("cookie");
+      //let header: {
+      //     'content-type': 'application/json'
+      //   },
+      // if(cookie)
+      // {
+      //   header.Cookie = cookie;
+      // }
       // wx.request({
       //   url: getApp().globalData.urlPath + 'hstc_interface/insert_user',
       //   data: {
@@ -115,9 +122,8 @@ Page({
       //     province: e.detail.userInfo.province,
       //     city: e.detail.userInfo.city
       //   },
-      //   header: {
-      //     'content-type': 'application/json'
-      //   },
+      //    method:post,
+      //   header: header,
       //   success: function (res) {
       //     //从数据库获取用户信息
       //     that.queryUsreInfo();
