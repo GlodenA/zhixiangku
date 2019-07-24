@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 const app = getApp()
 
 Page({
@@ -23,6 +21,7 @@ Page({
       url: '../logs/logs'
     })
   },
+  //监听页面的加载
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

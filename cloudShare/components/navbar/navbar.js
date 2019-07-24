@@ -12,7 +12,7 @@ Component({
       type: String,
       value: ''
     },
-  back: {
+    back: {
       type: Boolean,
       value: false
     },
@@ -32,7 +32,7 @@ Component({
     this.setData({
       statusBarHeight,
       navBarHeight,
-      
+
     })
   },
   methods: {
@@ -41,7 +41,7 @@ Component({
         url: '/pages/selfcentre/selfcentre',
       })
     },
-       back: function () {
+    back: function () {
       wx.navigateBack({
         delta: 1
       })

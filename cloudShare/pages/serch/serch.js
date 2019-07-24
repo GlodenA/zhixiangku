@@ -1,4 +1,3 @@
-// pages/serch/serch.js
 Page({
 
   /**

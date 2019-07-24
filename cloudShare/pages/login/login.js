@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 const app = getApp()
 
 Page({
@@ -18,24 +16,37 @@ Page({
     duration: 1000
   },
   //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
+  // bindViewTap: function () {
+  //   wx.navigateTo({
+  //     url: '../logs/logs'
+  //   })
+  // },
   onLoad: function () {
+    
+
+    var that = this;
+   // 查看是否授权
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
     if (app.globalData.userInfo) {
-      this.setData({
+      that.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse) {
+      console.log("1")
+    } else if (that.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
+      console.log("4")
       app.userInfoReadyCallback = res => {
-        this.setData({
+        that.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
+        })
+        console.log("2")
+        wx.switchTab({
+          url: "/pages/index/index"
         })
       }
     } else {
@@ -43,26 +54,111 @@ Page({
       wx.getUserInfo({
         success: res => {
           app.globalData.userInfo = res.userInfo
-          this.setData({
+          that.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
-        }
+          console.log("3")
+          wx.switchTab({
+            url: "/pages/index/index"
+          })
+        }       
       })
     }
-  },
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+    
+          //  wx.getUserInfo({
+          //    success: function (res) {
+                   //   app.userInfoReadyCallback = res => {
+    //     this.setData({
+    //       userInfo: res.userInfo,
+    //       hasUserInfo: true
+    //     })
+  
+               //从数据库获取用户信息
+           //    that.queryUsreInfo();
+              //用户已经授权过
+              //  wx.switchTab({
+              //    url: "/pages/index/index"
+              //  })
+          //   }
+          // });
+        }
+        
+      }
     })
   },
+  // getUserInfo: function (e) {
+  //   console.log(e)
+  //   app.globalData.userInfo = e.detail.userInfo
+  //   this.setData({
+  //     userInfo: e.detail.userInfo,
+  //     hasUserInfo: true
+  //   })
+  // },
   bindGetUserInfo(e) {
-    console.log(e.detail.userInfo)
-    wx.reLaunch({
-      url: "/pages/index/index",
-    })
-  }
+    if (e.detail.userInfo) {
+      //用户按了允许授权按钮
+      var that = this;
+      // 获取到用户的信息了，打印到控制台上看下
+      console.log("用户的信息如下：");
+      console.log(e.detail.userInfo);
+      app.globalData.userInfo = e.detail.userInfo;
+            //用户按了允许授权按钮
+      //var that = this;
+      //插入登录的用户的相关信息到数据库
+      // wx.request({
+      //   url: getApp().globalData.urlPath + 'hstc_interface/insert_user',
+      //   data: {
+      //     openid: getApp().globalData.openid,
+      //     nickName: e.detail.userInfo.nickName,
+      //     avatarUrl: e.detail.userInfo.avatarUrl,
+      //     province: e.detail.userInfo.province,
+      //     city: e.detail.userInfo.city
+      //   },
+      //   header: {
+      //     'content-type': 'application/json'
+      //   },
+      //   success: function (res) {
+      //     //从数据库获取用户信息
+      //     that.queryUsreInfo();
+      //     console.log("插入小程序登录用户信息成功！");
+      //   }
+      // });
+      wx.switchTab({
+        url: "/pages/index/index",
+      })
+    } else {
+      //用户按了拒绝按钮
+      wx.showModal({
+        title: '警告',
+        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+        showCancel: false,
+        confirmText: '返回授权',
+        success: function (res) {
+          // 用户没有授权成功，不需要改变 isHide 的值
+          if (res.confirm) {
+            console.log('用户点击了“返回授权”');
+          }
+        }
+      });
+    }
+
+
+  },
+      //获取用户信息接口
+    queryUsreInfo: function () {
+    wx.request({
+      url: getApp().globalData.urlPath + 'hstc_interface/queryByOpenid',
+      data: {
+        openid: getApp().globalData.openid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data);
+        getApp().globalData.userInfo = res.data;
+      }
+    }) 
+  },
 })
